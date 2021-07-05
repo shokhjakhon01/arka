@@ -1,0 +1,69 @@
+$xxl: 1400;
+$xl: 1200;
+$lg: 992;
+$md: 768;
+$sm: 576;
+$xxl: 1400;
+
+
+$sizes :(
+  1320: $xxl,
+  1140: $xl,
+  960: $lg,
+  720: $md,
+  540: $sm,
+  0: 0,
+);
+
+@each $container-size, $break-point in $sizes {
+  @if($break-point == 0){
+    .container{
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    @for $i from 1 through 12 {
+      .col-#{$i} {
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100% / 12 * $i;
+      }
+    }
+    }@else{
+      @media(min-width: #{$break-point}px){
+        $size : sm;
+        @if($break-point == 1400){$size:xxl};
+        @if($break-point == 1200){$size:xl};
+        @if($break-point == 992){$size:lg};
+        @if($break-point == 768){$size:md};
+        @for $i from 1 through 12 {
+          .col-#{$size}-#{$i} {
+            padding-right: 15px;
+            padding-left: 15px;
+            width: 100% / 12 * $i;
+          }
+        }
+        .container{
+          max-width: #{$container-size}px
+        }
+      }
+  }
+}
+
+.container-fluid{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@mixin media($size) {
+  @media(max-width:#{$size}px){
+    @content
+  }
+}
+
+$Roboto:'Roboto';
+$Lato: 'Lato';
